@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Image, StyleSheet, Text, Dimensions} from 'react-native'
 
-export default function MiniCard({videoId, title, channel, img}) {
+export default function MiniCard({ title, channel, img}) {
     return (
         <View style={styles.cardContainer}>
             <Image

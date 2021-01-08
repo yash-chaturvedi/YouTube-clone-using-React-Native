@@ -2,11 +2,11 @@ import React from 'react'
 import { View, Image, StyleSheet, Text, Dimensions} from 'react-native'
 import { MaterialIcons } from '@expo/vector-icons'
 
-export default function Card() {
+export default function Card({title, channel, imgUrl}) {
     return (
         <View style={styles.cardContainer}>
             <Image
-                source={{uri : 'https://images.unsplash.com/photo-1610050152335-4133c2c7d500?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80'}} 
+                source={{uri : imgUrl}} 
                 style={styles.cardImage}
             />
             <View style={styles.cardDescription} >
@@ -16,10 +16,10 @@ export default function Card() {
                     style={styles.cardDescriptionHeader}
                     ellipsizeMode = 'tail'
                     numberOfLines = {2}>
-                        card name 
+                        {title}
                     </Text>
 
-                    <Text>card name</Text>
+                    <Text>{channel}</Text>
                 </View>
             </View>
         </View>
