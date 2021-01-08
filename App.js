@@ -6,9 +6,7 @@ import HomeScreen from './src/screens/Home'
 
 export default function App() {
   return (
-    <View style={{
-      flex : 1 ,  
-    }}>
+    <View style={{ flex : 1 }} >
       <HomeScreen/>
       <StatusBar style="auto" />
     </View>
