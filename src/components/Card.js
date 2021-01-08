@@ -28,11 +28,11 @@ export default function Card({title, channel, imgUrl}) {
 
 const styles = StyleSheet.create({
     cardContainer : {
-        marginBottom : 10
+        margin : 10
     },
     cardImage : {
         height : 200,
-        width : Dimensions.get('screen').width
+        width : Dimensions.get('screen').width*.95
     },
     cardDescription : {
         flexDirection : 'row',
@@ -42,7 +42,8 @@ const styles = StyleSheet.create({
         marginLeft : 10
     },
     cardDescriptionHeader : {
-        fontSize : 20,
-        width : Dimensions.get('screen').width*.7
+        fontSize : 15,
+        fontWeight : 'bold',
+        width : Dimensions.get('screen').width*.75
     }
 })
