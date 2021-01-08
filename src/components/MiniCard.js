@@ -1,11 +1,11 @@
 import React from 'react'
 import { View, Image, StyleSheet, Text, Dimensions} from 'react-native'
 
-export default function MiniCard() {
+export default function MiniCard({videoId, title, channel, img}) {
     return (
         <View style={styles.cardContainer}>
             <Image
-                source={{uri : 'https://images.unsplash.com/photo-1610050152335-4133c2c7d500?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80'}} 
+                source={{uri : img}} 
                 style={styles.cardImage}
             />
             <View>
@@ -13,10 +13,10 @@ export default function MiniCard() {
                     style={styles.cardDescriptionHeading}
                     ellipsizeMode = 'tail'
                     numberOfLines = {3}>
-                        card name 
+                       {title}
                     </Text>
 
-                    <Text style={styles.cardDescriptionText} >card name</Text>
+                    <Text style={styles.cardDescriptionText} >{channel}</Text>
             </View>
         </View>
     )
