@@ -1,8 +1,13 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import {Entypo, Ionicons, FontAwesome5} from '@expo/vector-icons'
+import Constant from 'expo-constants'
+import { useNavigation } from '@react-navigation/native'
 
 export default function Header() {
+
+    const navigation = useNavigation();
+
     return (
         <View style={styles.headerContainer} >
             <View style={styles.headerBox }>
@@ -11,9 +16,27 @@ export default function Header() {
             </View>
 
             <View style={styles.headerBox} >
-                <Ionicons name='md-videocam-outline' size={32} color='#212121' style={styles.headerIcon} />
-                <Ionicons name='md-search-outline' size={32} color='#212121' style={styles.headerIcon} />
-                <FontAwesome5 name='toggle-on' size={32} color='#212121' style={styles.headerIcon} />
+                <Ionicons 
+                    name='md-videocam-outline' 
+                    size={28} 
+                    color='#212121' 
+                    style={styles.headerIcon} 
+                />
+
+                <Ionicons 
+                    name='md-search-outline' 
+                    size={28} 
+                    color='#212121' 
+                    style={styles.headerIcon} 
+                    onPress = {() => navigation.navigate('search')}
+                />
+
+                <FontAwesome5 
+                    name='toggle-on' 
+                    size={28} 
+                    color='#212121' 
+                    style={styles.headerIcon} 
+                />
             </View>
         </View>
     )
@@ -21,6 +44,7 @@ export default function Header() {
 
 const styles = StyleSheet.create({
     headerContainer : {
+        marginTop : Constant.statusBarHeight,
         height:45,
         backgroundColor : 'white',
         flexDirection : 'row',

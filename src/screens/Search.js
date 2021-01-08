@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { View, TextInput, StyleSheet,Dimensions, ActivityIndicator,FlatList } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 import MiniCard from '../components/MiniCard'
+import Constant from 'expo-constants'
 
-const API_KEY = 'AIzaSyDkCvCUUz0FuIonN6NDK3NWWEqgSth3av4'
+const API_KEY = 'AIzaSyCkp4czjlo4xGqNYc6hXJuIL0YRoCstzdQ'
 const BASE_URL = 'https://youtube.googleapis.com/youtube/v3/search?'
 
-export default function Search() {
+export default Search = ({navigation}) => {
 
     const [input,setInput] = useState('')
     const [searchResults,setSearchResults] = useState([])
@@ -28,9 +29,13 @@ export default function Search() {
     
 
     return (
-        <View style={{ flex : 1 }}>
+        <View style={{ flex : 1 ,marginTop : Constant.statusBarHeight}}>
             <View style={styles.searchHeaderContainer} >
-                <Ionicons name='md-arrow-back' size={32} />
+                <Ionicons 
+                    name='md-arrow-back' 
+                    size={32} 
+                    onPress = {() => navigation.goBack()}
+                />
                 <TextInput 
                     style={styles.searchInput}
                     value={input}
@@ -39,10 +44,7 @@ export default function Search() {
                 <Ionicons name='send-sharp' size={32} onPress={fetchData} />
             </View>
 
-            {!loaded ?
-                <View style={{flex:1 , justifyContent:'center'}}>
-                    <ActivityIndicator color='black' size='large' />
-                </View> : null }
+            {!loaded ?<ActivityIndicator color='black' size='large' style={{marginTop : 10}} /> : null }
 
             <FlatList
                 data={searchResults}
