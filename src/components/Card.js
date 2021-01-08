@@ -43,6 +43,6 @@ const styles = StyleSheet.create({
     },
     cardDescriptionHeader : {
         fontSize : 20,
-        width : Dimensions.get('screen').width - 70
+        width : Dimensions.get('screen').width*.7
     }
 })

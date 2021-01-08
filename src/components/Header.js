@@ -1,8 +1,6 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import {Entypo, Ionicons, FontAwesome5} from '@expo/vector-icons'
-import Constant from 'expo-constants'
-
 
 export default function Header() {
     return (
@@ -13,8 +11,8 @@ export default function Header() {
             </View>
 
             <View style={styles.headerBox} >
-                <Ionicons name='md-videocam' size={32} color='#212121' style={styles.headerIcon} />
-                <Ionicons name='md-search' size={32} color='#212121' style={styles.headerIcon} />
+                <Ionicons name='md-videocam-outline' size={32} color='#212121' style={styles.headerIcon} />
+                <Ionicons name='md-search-outline' size={32} color='#212121' style={styles.headerIcon} />
                 <FontAwesome5 name='toggle-on' size={32} color='#212121' style={styles.headerIcon} />
             </View>
         </View>
@@ -24,11 +22,10 @@ export default function Header() {
 const styles = StyleSheet.create({
     headerContainer : {
         height:45,
-        marginTop : Constant.statusBarHeight,
         backgroundColor : 'white',
         flexDirection : 'row',
         justifyContent : 'space-between',
-        elevation : 4
+        elevation : 4,
     },
     headerBox : {
         flexDirection : 'row',
