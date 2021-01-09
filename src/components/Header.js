@@ -1,14 +1,17 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
-import {Entypo, Ionicons, FontAwesome5} from '@expo/vector-icons'
+import {Entypo, Ionicons, Feather} from '@expo/vector-icons'
 import Constant from 'expo-constants'
 import { useNavigation, useTheme } from '@react-navigation/native'
-
+import { useDispatch, useSelector } from 'react-redux'
 
 export default function Header() {
 
-    const navigation = useNavigation();
+    const navigation = useNavigation()
+    const dispatch = useDispatch()
+    const darkTheme = useSelector(state => state.darkTheme)
     const {colors} = useTheme()
+    const toggle = darkTheme ? 'toggle-left': 'toggle-right'
 
     return (
         <View style={{
@@ -37,11 +40,12 @@ export default function Header() {
                     onPress = {() => navigation.navigate('search')}
                 />
 
-                <FontAwesome5 
-                    name='toggle-on' 
-                    size={28} 
+                <Feather 
+                    name={toggle} 
+                    size={30} 
                     color={colors.iconColor} 
                     style={styles.headerIcon} 
+                    onPress = {() => dispatch({type : 'toggleTheme' , payload :!darkTheme })}
                 />
             </View>
         </View>

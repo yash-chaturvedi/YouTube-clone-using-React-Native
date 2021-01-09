@@ -14,7 +14,7 @@ const Heading = ({name}) =>
 
 const Explore = () => {
 
-    const searchResults = useSelector(state => state)
+    const searchResults = useSelector(state => state.searchResult)
 
     return (
         <View style={{flex : 1}}>

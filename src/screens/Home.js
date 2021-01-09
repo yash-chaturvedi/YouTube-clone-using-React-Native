@@ -6,7 +6,7 @@ import Header from '../components/Header'
 
 export default function Home() {
 
-    const searchResults = useSelector(state => state)
+    const searchResults = useSelector(state => state.searchResult)
     // console.log(searchResults);
 
     return (

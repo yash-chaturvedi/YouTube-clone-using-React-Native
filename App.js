@@ -3,8 +3,8 @@ import {NavigationContainer, DefaultTheme, DarkTheme, useTheme} from '@react-nav
 import {createStackNavigator} from '@react-navigation/stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {MaterialIcons} from '@expo/vector-icons'
-import {Provider} from 'react-redux'
-import {createStore} from 'redux'
+import {Provider, useSelector} from 'react-redux'
+import {createStore, combineReducers} from 'redux'
 import {reducer} from './src/reducers/reducer'
 
 import Home from './src/screens/Home'
@@ -12,10 +12,16 @@ import Search from './src/screens/Search';
 import VideoPlayer from './src/screens/VideoPlayer';
 import Subscribe from './src/screens/Subscribe';
 import Explore from './src/screens/Explore';
+import { themeReducer } from './src/reducers/themeReducer';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
-const store = createStore(reducer);
+
+const rootReducer = combineReducers({
+  searchResult : reducer,
+  darkTheme : themeReducer
+})
+const store = createStore(rootReducer);
 
 const customDarkTheme ={
   ...DarkTheme,
@@ -76,17 +82,27 @@ const rootHome = () =>{
   );
 }
 
-export default function App() {
+function App() {
+
+  const darkTheme = useSelector(state => state.darkTheme)
+
   return (
-    <Provider store={store}>
-      <NavigationContainer theme={customDefaultTheme} >
-        <Stack.Navigator headerMode="none">
-          <Stack.Screen name="root" component={rootHome} />
-          <Stack.Screen name="search" component={Search} />
-          <Stack.Screen name="videoPlayer" component={VideoPlayer} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </Provider>
+
+    <NavigationContainer theme={darkTheme ? customDarkTheme : customDefaultTheme} >
+      <Stack.Navigator headerMode="none">
+        <Stack.Screen name="root" component={rootHome} />
+        <Stack.Screen name="search" component={Search} />
+        <Stack.Screen name="videoPlayer" component={VideoPlayer} />
+      </Stack.Navigator>
+    </NavigationContainer>
+
   );
 }
 
+export default () => {
+  return (
+    <Provider store={store}>
+      <App/>
+    </Provider>
+  )
+}

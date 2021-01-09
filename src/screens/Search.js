@@ -15,7 +15,7 @@ export default Search = ({navigation}) => {
     // const [searchResults,setSearchResults] = useState([])
     const [loaded,setLoaded] = useState(true)
     const dispatch = useDispatch()
-    const searchResults = useSelector(state => state)
+    const searchResults = useSelector(state => state.searchResult)
     const {colors} = useTheme()
 
     const fetchData = async() => {
