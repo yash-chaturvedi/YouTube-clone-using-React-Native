@@ -1,28 +1,38 @@
 import React from 'react'
-import { View, Image, StyleSheet, Text, Dimensions} from 'react-native'
+import { View, Image, StyleSheet, Text, Dimensions, TouchableOpacity} from 'react-native'
 import { MaterialIcons } from '@expo/vector-icons'
+import { useNavigation, useTheme } from '@react-navigation/native'
 
-export default function Card({title, channel, imgUrl}) {
+
+export default function Card({videoId, title, channel, imgUrl}) {
+
+    const navigation = useNavigation();
+    const {colors} = useTheme()
+
     return (
-        <View style={styles.cardContainer}>
-            <Image
-                source={{uri : imgUrl}} 
-                style={styles.cardImage}
-            />
-            <View style={styles.cardDescription} >
-                <MaterialIcons name='account-circle' size={42} color='#212121' />
-                <View style={styles.cardDescriptionText} >
-                    <Text 
-                    style={styles.cardDescriptionHeader}
-                    ellipsizeMode = 'tail'
-                    numberOfLines = {2}>
-                        {title}
-                    </Text>
+        <TouchableOpacity
+            onPress = {() => navigation.navigate('videoPlayer',{videoId:videoId, title:title})}
+        >
+            <View style={styles.cardContainer}>
+                <Image
+                    source={{uri : imgUrl}} 
+                    style={styles.cardImage}
+                />
+                <View style={styles.cardDescription} >
+                    <MaterialIcons name='account-circle' size={42} color={colors.iconColor} />
+                    <View style={styles.cardDescriptionText} >
+                        <Text 
+                        style={{...styles.cardDescriptionHeader, color : colors.iconColor}}
+                        ellipsizeMode = 'tail'
+                        numberOfLines = {2}>
+                            {title}
+                        </Text>
 
-                    <Text>{channel}</Text>
+                        <Text style={{color : colors.iconColor}} >{channel}</Text>
+                    </View>
                 </View>
             </View>
-        </View>
+        </TouchableOpacity>
     )
 }
 
@@ -43,7 +53,9 @@ const styles = StyleSheet.create({
     },
     cardDescriptionHeader : {
         fontSize : 15,
-        fontWeight : 'bold',
-        width : Dimensions.get('screen').width*.75
+        fontFamily : 'sans-serif-medium',
+        width : Dimensions.get('screen').width*.75,
+        lineHeight : 22,
+        marginBottom : 5
     }
 })

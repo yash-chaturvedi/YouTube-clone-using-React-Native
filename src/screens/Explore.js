@@ -47,9 +47,9 @@ const Explore = () => {
                         imgUrl={item.snippet.thumbnails.high.url}
                     />
                 }
-                ListFooterComponent={
-                    <View/>
-                }
+                // ListFooterComponent={
+                //     <View/>
+                // }
             />
 
         </View>

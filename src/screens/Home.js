@@ -17,6 +17,7 @@ export default function Home() {
                 data={searchResults}
                 renderItem={({item}) => 
                     <Card
+                        videoId={item.id.videoId}
                         title={item.snippet.title}
                         channel={item.snippet.channelTitle}
                         imgUrl={item.snippet.thumbnails.high.url}

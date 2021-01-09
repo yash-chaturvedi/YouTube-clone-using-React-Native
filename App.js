@@ -1,5 +1,5 @@
 import React from 'react';
-import {NavigationContainer} from '@react-navigation/native'
+import {NavigationContainer, DefaultTheme, DarkTheme, useTheme} from '@react-navigation/native'
 import {createStackNavigator} from '@react-navigation/stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {MaterialIcons} from '@expo/vector-icons'
@@ -15,9 +15,33 @@ import Explore from './src/screens/Explore';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
-const store = createStore(reducer)
+const store = createStore(reducer);
+
+const customDarkTheme ={
+  ...DarkTheme,
+  colors: {
+    ...DarkTheme.colors,
+    headerColor : 'black',
+    background : '#3b3e40',
+    iconColor : 'white',
+    tabIcon : 'white'
+  },
+};
+
+const customDefaultTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    headerColor : 'white',
+    iconColor : '#212121',
+    tabIcon : 'red' 
+  },
+};
 
 const rootHome = () =>{
+
+  const {colors} = useTheme()
+
   return (
       <Tab.Navigator
         screenOptions={({ route }) => ({
@@ -37,7 +61,7 @@ const rootHome = () =>{
           },
         })}
         tabBarOptions={{
-          activeTintColor: 'red',
+          activeTintColor: colors.tabIcon,
           inactiveTintColor: 'gray',
           labelStyle : {textTransform : 'capitalize'},
           style: {
@@ -55,7 +79,7 @@ const rootHome = () =>{
 export default function App() {
   return (
     <Provider store={store}>
-      <NavigationContainer>
+      <NavigationContainer theme={customDefaultTheme} >
         <Stack.Navigator headerMode="none">
           <Stack.Screen name="root" component={rootHome} />
           <Stack.Screen name="search" component={Search} />

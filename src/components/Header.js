@@ -2,31 +2,37 @@ import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import {Entypo, Ionicons, FontAwesome5} from '@expo/vector-icons'
 import Constant from 'expo-constants'
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation, useTheme } from '@react-navigation/native'
+
 
 export default function Header() {
 
     const navigation = useNavigation();
+    const {colors} = useTheme()
 
     return (
-        <View style={styles.headerContainer} >
+        <View style={{
+            ...styles.headerContainer, 
+            backgroundColor : colors.headerColor,
+
+            }} >
             <View style={styles.headerBox }>
                 <Entypo name="youtube" size={32} color="red" />
-                <Text style={styles.headerText} >YouTube</Text>
+                <Text style={{...styles.headerText, color : colors.iconColor}} >YouTube</Text>
             </View>
 
             <View style={styles.headerBox} >
                 <Ionicons 
                     name='md-videocam-outline' 
                     size={28} 
-                    color='#212121' 
+                    color={colors.iconColor} 
                     style={styles.headerIcon} 
                 />
 
                 <Ionicons 
                     name='md-search-outline' 
                     size={28} 
-                    color='#212121' 
+                    color={colors.iconColor}  
                     style={styles.headerIcon} 
                     onPress = {() => navigation.navigate('search')}
                 />
@@ -34,7 +40,7 @@ export default function Header() {
                 <FontAwesome5 
                     name='toggle-on' 
                     size={28} 
-                    color='#212121' 
+                    color={colors.iconColor} 
                     style={styles.headerIcon} 
                 />
             </View>
@@ -46,7 +52,6 @@ const styles = StyleSheet.create({
     headerContainer : {
         marginTop : Constant.statusBarHeight,
         height:45,
-        backgroundColor : 'white',
         flexDirection : 'row',
         justifyContent : 'space-between',
         elevation : 4,
@@ -61,7 +66,6 @@ const styles = StyleSheet.create({
         fontSize : 22,
         marginLeft : 5,
         fontWeight : 'bold',
-        color : '#212121'
     },
     headerIcon :{
         marginLeft : 25
