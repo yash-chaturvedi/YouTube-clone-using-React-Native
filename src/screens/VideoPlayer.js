@@ -2,10 +2,13 @@ import React from 'react'
 import { StyleSheet, Text, View, Dimensions } from 'react-native'
 import Constant from 'expo-constants'
 import { WebView } from 'react-native-webview'
+import { useTheme } from '@react-navigation/native'
+
 
 const VideoPlayer = ({route}) => {
 
     const {videoId, title} = route.params
+    const {colors} = useTheme()
 
     return (
         <View style={styles.videoWrapper} >
@@ -19,7 +22,7 @@ const VideoPlayer = ({route}) => {
             <Text
                 ellipsizeMode = 'tail'
                 numberOfLines = {2}
-                style={styles.videoTitle}
+                style={{...styles.videoTitle, color : colors.iconColor}}
             >
                 {title}
             </Text>
@@ -41,7 +44,7 @@ const styles = StyleSheet.create({
     videoTitle : {
         fontSize : 15,
         fontFamily : 'sans-serif-medium',
-        width : Dimensions.get('screen').width*.90,
+        width : Dimensions.get('screen').width*.95,
         margin : 10,
         lineHeight : 22,
         paddingBottom : 8 ,

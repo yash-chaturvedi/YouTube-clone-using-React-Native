@@ -10,7 +10,7 @@ import {reducer} from './src/reducers/reducer'
 import Home from './src/screens/Home'
 import Search from './src/screens/Search';
 import VideoPlayer from './src/screens/VideoPlayer';
-import Subscribe from './src/screens/Subscribe';
+// import Subscribe from './src/screens/Subscribe';
 import Explore from './src/screens/Explore';
 import { themeReducer } from './src/reducers/themeReducer';
 
@@ -77,7 +77,7 @@ const rootHome = () =>{
       >
         <Tab.Screen name="home" component={Home} />
         <Tab.Screen name="explore" component={Explore} />
-        <Tab.Screen name="subscribe" component={Subscribe} />
+        {/* <Tab.Screen name="subscribe" component={Subscribe} /> */}
       </Tab.Navigator>
   );
 }

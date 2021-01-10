@@ -11,7 +11,7 @@ export default function Header() {
     const dispatch = useDispatch()
     const darkTheme = useSelector(state => state.darkTheme)
     const {colors} = useTheme()
-    const toggle = darkTheme ? 'toggle-left': 'toggle-right'
+    const toggle = darkTheme ? 'toggle-right': 'toggle-left'
 
     return (
         <View style={{
